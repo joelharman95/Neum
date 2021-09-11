@@ -32,31 +32,6 @@ class MainActivity : AppCompatActivity() {
                     serviceList.remove(service)
             }
 
-            val listt = listOf(
-                Services(
-                    rate = 120,
-                    description = "Leaking water",
-                    serviceName = "Water leakage",
-                    imageUrl = "https://maharah-app-images.s3.amazonaws.com/DefaultImages/default.jpg"
-                ),
-                Services(
-                    rate = 200,
-                    description = "Service for split ac",
-                    serviceName = "Split AC",
-                    imageUrl = "https://maharah-app-images.s3.amazonaws.com/DefaultImages/default.jpg"
-                ),
-                Services(
-                    rate = 50,
-                    description = "Installing AC",
-                    serviceName = "Installation",
-                    imageUrl = "https://maharah-app-images.s3.amazonaws.com/DefaultImages/default.jpg"
-                )
-            )
-            (binding?.rvService?.adapter as MyServiceAdapter).addServiceList(listt)
-            binding?.ivSpace?.loadImage("https://maharah-app-images.s3.amazonaws.com/DefaultImages/default.jpg")
-            binding?.tvAppliance?.text = "Air Conditioner"
-            binding?.tvApplianceDesc?.text = "Dummy description for Air conditioning"
-
             btnPickDateAndTime.setOnClickListener {
 //                if (serviceList.isEmpty()) {
                 serviceList.clear()
@@ -72,8 +47,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         //  getServices()  //  Both Works
-//        serviceViewModel.getServices()
-//        listenForData()
+        serviceViewModel.getServices()
+        listenForData()
     }
 
     private fun getServices() {
@@ -109,11 +84,10 @@ class MainActivity : AppCompatActivity() {
                         binding?.ivSpace?.loadImage(it.imageUrl.toString())
                         binding?.tvAppliance?.text = it.categoryName
                         binding?.tvApplianceDesc?.text = it.description
-                        if (!it.services.isNullOrEmpty()) {
+                        if (!it.services.isNullOrEmpty())
                             (binding?.rvService?.adapter as MyServiceAdapter).addServiceList(it.services as List<Services>)
-                        } else {
+                        else
                             toast(getString(R.string.label_no_space_or_service))
-                        }
                     }
                     this unblockInput binding?.pbServices
                     serviceViewModel.responseLiveData.removeObservers(this)
