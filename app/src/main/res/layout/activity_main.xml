@@ -108,6 +108,7 @@
         android:layout_marginStart="@dimen/spacing_small"
         android:layout_marginEnd="@dimen/spacing_small"
         android:backgroundTint="@color/black"
+        android:layout_marginBottom="@dimen/spacing_small"
         android:padding="@dimen/spacing_small"
         android:text="@string/action_pick_date_and_time"
         android:textAllCaps="false"
