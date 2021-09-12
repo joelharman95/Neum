@@ -6,10 +6,11 @@
  *
  */
 
-package com.nis.neum.ui
+package com.nis.neum.ui.view.service
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.nis.neum.R
 import com.nis.neum.data.network.api.response.Services
@@ -63,24 +64,32 @@ class MyServiceAdapter(val myService: myService) :
                     ivServicePic.loadImage(_service.imageUrl + "")
                     ivServicePic.clipToOutline = true
 
-                    if (_service.isAdded) {
-                        btnAdd.text = itemView.context.getString(R.string.action_added)
-                        btnAdd.setTextColor(btnAdd.getCompatColor(R.color.white))
-                        btnAdd.setBackgroundColor(btnAdd.getCompatColor(R.color.yellow))
-                    } else {
-                        btnAdd.text = itemView.context.getString(R.string.action_add)
-                        btnAdd.setTextColor(btnAdd.getCompatColor(R.color.black))
-                        btnAdd.setBackgroundColor(btnAdd.getCompatColor(R.color.whitish_grey))
-                    }
+                    //  Added bcs, when working with large data, recyclerview will reuse its old view,
+                    //  thus making add button's view to display old data
+                    updateButton(serviceList[position].isAdded, btnAdd)
 
                     btnAdd.setOnClickListener {
                         serviceList[position].isAdded = !serviceList[position].isAdded
+                        updateButton(serviceList[position].isAdded, btnAdd)
                         //  myService.invoke(serviceList[position].isAdded, _service)
-                        notifyItemChanged(position)
+//                        notifyItemChanged(position)
                     }
                 }
             }
         }
+
+        private fun updateButton(isAdded: Boolean, btnAdd: Button) {
+            if (isAdded) {
+                btnAdd.text = itemView.context.getString(R.string.action_added)
+                btnAdd.setTextColor(btnAdd.getCompatColor(R.color.white))
+                btnAdd.setBackgroundColor(btnAdd.getCompatColor(R.color.yellow))
+            } else {
+                btnAdd.text = itemView.context.getString(R.string.action_add)
+                btnAdd.setTextColor(btnAdd.getCompatColor(R.color.black))
+                btnAdd.setBackgroundColor(btnAdd.getCompatColor(R.color.whitish_grey))
+            }
+        }
+
     }
 
 }

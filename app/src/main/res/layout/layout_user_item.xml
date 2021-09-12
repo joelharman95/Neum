@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/spacing_small">
+    android:layout_margin="@dimen/spacing_small"
+    tools:context=".ui.view.service.MyServiceAdapter">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivServicePic"
         android:layout_width="64dp"
         android:layout_height="64dp"
+        android:layout_marginStart="@dimen/spacing_tiny"
         android:background="@drawable/corner_imageview_bg"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="@id/tvDesc"
@@ -22,6 +24,7 @@
         android:id="@+id/btnAdd"
         android:layout_width="74dp"
         android:layout_height="38dp"
+        android:layout_marginEnd="@dimen/spacing_tiny"
         android:fontFamily="@font/sf_pro_text_regular"
         android:gravity="center"
         android:textAllCaps="false"
@@ -32,7 +35,7 @@
         app:elevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/ivServicePic"
-        tools:text="Add" />
+        tools:text="@string/action_add" />
 
     <com.nis.neum.utils.CommonTextView
         android:id="@+id/tvServiceTitle"
@@ -59,10 +62,9 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvDesc"
         style="@style/DescriptionTextView"
-        android:layout_marginTop="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/btnAdd"
         app:layout_constraintStart_toStartOf="@id/tvServiceTitle"
-        app:layout_constraintTop_toBottomOf="@id/tvCost"
+        app:layout_constraintTop_toBottomOf="@id/btnAdd"
         tools:text="Cost for the repair Cost for the repair Cost for the repair Cost for the repair Cost for the repair Cost for the repair Cost for the repair Cost for the repair Cost for the repair Cost for the repair Cost for the repair Cost for the repair " />
 
     <View

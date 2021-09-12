@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +7,7 @@
     tools:context=".ui.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tbService"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
@@ -16,112 +16,20 @@
         app:title="@string/label_select_service"
         app:titleTextColor="@color/white" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivSpace"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/navHostFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="196dp"
-        android:scaleType="fitXY"
-        app:layout_constraintTop_toBottomOf="@id/tbService"
-        tools:src="@drawable/appliance_pic" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivAppliance"
-        android:layout_width="53dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="@dimen/spacing_small"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:backgroundTint="@color/yellow"
-        android:padding="@dimen/spacing_tiny"
-        android:src="@drawable/ac"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivSpace" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvAppliance"
-        style="@style/TextAppearance.AppCompat.Title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_tiny"
-        android:layout_marginTop="@dimen/spacing_tiny"
-        android:layout_marginEnd="@dimen/spacing_small"
-        android:fontFamily="@font/helvetica_bold"
-        android:text="@string/label_air_conditioner"
-        android:textSize="@dimen/size_16"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ivAppliance"
-        app:layout_constraintTop_toTopOf="@id/ivAppliance" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvApplianceDesc"
-        style="@style/DescriptionTextView"
-        android:layout_marginTop="0dp"
-        android:textSize="@dimen/size_13"
-        app:layout_constraintEnd_toEndOf="@id/tvAppliance"
-        app:layout_constraintStart_toStartOf="@id/tvAppliance"
-        app:layout_constraintTop_toBottomOf="@id/tvAppliance"
-        tools:text="Cost for the repair Cost for the repair Cost for the repair Cost for the repair Cost for the repair Cost for the repair Cost for the repair Cost for the repair Cost for the repair Cost for the repair Cost for the repair Cost for the repair " />
-
-    <View
-        android:id="@+id/viewLine1"
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="@color/line_color"
-        app:layout_constraintTop_toBottomOf="@id/tvApplianceDesc" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvChooseService"
-        style="@style/TextAppearance.MaterialComponents.Subtitle2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:gravity="center"
-        android:text="@string/label_choose_services"
-        android:textColor="@color/gray"
-        app:layout_constraintTop_toBottomOf="@id/viewLine1" />
-
-    <View
-        android:id="@+id/viewLine2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:background="@color/whitish_grey"
-        app:layout_constraintTop_toBottomOf="@id/tvChooseService" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvService"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/spacing_tiny"
-        android:clipToPadding="false"
-        android:paddingTop="@dimen/spacing_tiny"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/btnPickDateAndTime"
-        app:layout_constraintTop_toBottomOf="@id/viewLine2"
-        tools:itemCount="3"
-        tools:listitem="@layout/layout_user_item" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnPickDateAndTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_small"
-        android:layout_marginEnd="@dimen/spacing_small"
-        android:backgroundTint="@color/black"
-        android:layout_marginBottom="@dimen/spacing_small"
-        android:padding="@dimen/spacing_small"
-        android:text="@string/action_pick_date_and_time"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph" />
 
     <ProgressBar
         android:id="@+id/pbServices"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

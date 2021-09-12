@@ -11,20 +11,20 @@ package com.nis.neum.di
 import android.app.Activity
 import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.Typeface
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.ColorRes
-import androidx.annotation.DimenRes
-import androidx.annotation.FontRes
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DecodeFormat
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestOptions
 import com.nis.neum.R
 import com.nis.neum.data.network.api.response.ResError
+import com.nis.neum.utils.CrossFadeDrawable
 
 fun View.getCompatColor(@ColorRes colorRes: Int): Int =
     ContextCompat.getColor(this.context, colorRes)
@@ -35,6 +35,7 @@ infix fun Context.toast(message: String) {
 
 fun errorResponseMessage(resError: ResError) = resError.message.toString()
 
+val options: RequestOptions = RequestOptions().format(DecodeFormat.PREFER_RGB_565)
 fun ImageView.loadImage(image: Any) {
     Glide.with(context)
         .load(
@@ -46,6 +47,8 @@ fun ImageView.loadImage(image: Any) {
         )
         .placeholder(ContextCompat.getDrawable(context, R.drawable.ic_launcher_foreground))
 //        .circleCrop()
+//        .apply(options)
+        .transition(DrawableTransitionOptions.with(CrossFadeDrawable()))
         .into(this)
 }
 

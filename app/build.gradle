@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id("androidx.navigation.safeargs")  // For both java and kotlin
+//    id("androidx.navigation.safeargs.kotlin")  // For kotlin only
 }
 
 android {
@@ -84,4 +86,8 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:$glide_version"
     implementation "com.github.bumptech.glide:glide:$glide_version"
 
+    //  JetPack - Navigation
+    implementation "androidx.navigation:navigation-runtime-ktx:$navigation_version"
+    implementation("androidx.navigation:navigation-fragment-ktx:$navigation_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$navigation_version")
 }
